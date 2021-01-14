@@ -3,7 +3,6 @@ package sk.app.lg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.app.lg.repository.EventRepository;
-
 import java.util.Optional;
 import java.util.UUID;
 

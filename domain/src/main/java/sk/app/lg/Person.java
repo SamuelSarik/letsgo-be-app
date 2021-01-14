@@ -4,13 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Getter
-@Table(name = "Event")
-public class Event {
+@Table(name="Person")
+public class Person {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -22,14 +21,22 @@ public class Event {
     UUID id;
 
     @Setter
-    @Column(name = "name")
-    String name;
+    @Column(name = "first_name")
+    String firstName;
 
     @Setter
-    @Column(name = "place")
-    String place;
+    @Column(name = "last_name")
+    String lastName;
 
     @Setter
-    @Column(name = "time_of_event")
-    LocalDateTime timeOfEvent;
+    @Column(name = "age")
+    String age;
+
+    @Setter
+    @Column(name = "position")
+    String position;
+
+    @Setter
+    @Column(name = "email")
+    String email;
 }

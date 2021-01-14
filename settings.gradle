@@ -5,4 +5,5 @@ include 'domain'
 include 'app'
 include 'db:model'
 findProject(':db:model')?.name = 'model'
+include 'business'
 

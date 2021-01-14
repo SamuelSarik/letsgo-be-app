@@ -1,9 +1,10 @@
-package sk.app.lg;
+package sk.app.lg.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import sk.app.lg.Event;
+import sk.app.lg.EventService;
 import java.util.UUID;
 
 @RestController

@@ -2,19 +2,20 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
-                   logicalFilePath="v1_00_employee.xml">
+                   logicalFilePath="v1_00_person.xml">
 
     <changeSet id="v1_0_tag" author="sarik">
         <tagDatabase tag="v1.0"/>
     </changeSet>
 
-    <changeSet id="v1_00_employee" author="sarik">
+    <changeSet id="v1_00_person" author="sarik">
 
-        <createTable catalogName="lglocal" tableName="employee" schemaName="PUBLIC" tablespace="PUBLIC">
-            <column name="id" type="UUID">
+        <createTable catalogName="lglocal" tableName="person" schemaName="PUBLIC" tablespace="PUBLIC">
+            <column name="id" type="binary(16)">
                 <constraints primaryKey="true"
                              nullable="false"
-                             primaryKeyName="pk_employees"/>
+                             unique="true"
+                             primaryKeyName="pk_person"/>
             </column>
             <column name="first_name" type="varchar(255)">
                 <constraints nullable="false"/>
