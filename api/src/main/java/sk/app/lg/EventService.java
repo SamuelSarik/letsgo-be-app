@@ -19,7 +19,7 @@ public class EventService {
 
     public Event insert(Event event) {
         return eventRepository.save(event);
-    }e
+    }
 
     public Optional<Event> find(UUID id) {
         return eventRepository.findById(id);
