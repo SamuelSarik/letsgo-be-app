@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'ak.app'
+group 'sk.app'
 version '0.0.1-SNAPSHOT'
 
 repositories {
@@ -12,5 +12,7 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
-    compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.27.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.2.Final'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile project(':domain')
 }
