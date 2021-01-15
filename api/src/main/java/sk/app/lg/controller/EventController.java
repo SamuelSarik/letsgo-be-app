@@ -7,23 +7,28 @@ import sk.app.lg.Event;
 import sk.app.lg.EventService;
 import java.util.UUID;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
-public class EventController {
+public class EventController extends BaseController {
 
     @Autowired
     EventService eventService;
+
+    public static final String EVENTS_URI = BASE_URI + "/events";
+    public static final String EVENT_URI = EVENTS_URI + "/{eventId}";
 
     @GetMapping(path = "/test")
     public ResponseEntity test(){
         return ResponseEntity.ok("Test is ok");
     }
 
-    @GetMapping(path = "/event/{id}")
-    public ResponseEntity getEvent(@PathVariable UUID id){
-        return ResponseEntity.ok(eventService.find(id));
+    @GetMapping(path = EVENT_URI, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity getEvent(@PathVariable UUID eventId){
+        return ResponseEntity.ok(eventService.find(eventId));
     }
 
-    @PostMapping(path = "/event")
+    @PostMapping(path = EVENTS_URI, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity insertEvent(@RequestBody Event event){
         return ResponseEntity.ok(eventService.insert(event));
     }
