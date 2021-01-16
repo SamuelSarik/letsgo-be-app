@@ -8,8 +8,8 @@ import java.util.UUID;
 
 @Entity
 @Getter
-@Table(name="Person")
-public class Person {
+@Table(name="User")
+public class User {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -29,8 +29,8 @@ public class Person {
     String lastName;
 
     @Setter
-    @Column(name = "age")
-    String age;
+    @Column(name = "birth_date")
+    String birthDate;
 
     @Setter
     @Column(name = "position")

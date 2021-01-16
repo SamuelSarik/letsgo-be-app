@@ -2,20 +2,20 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
-                   logicalFilePath="v1_00_person.xml">
+                   logicalFilePath="v1_00_user.xml">
 
     <changeSet id="v1_0_tag" author="sarik">
         <tagDatabase tag="v1.0"/>
     </changeSet>
 
-    <changeSet id="v1_00_person" author="sarik">
+    <changeSet id="v1_00_user" author="sarik">
 
-        <createTable catalogName="lglocal" tableName="person" schemaName="PUBLIC" tablespace="PUBLIC">
+        <createTable catalogName="lglocal" tableName="user" schemaName="PUBLIC" tablespace="PUBLIC">
             <column name="id" type="binary(16)">
                 <constraints primaryKey="true"
                              nullable="false"
                              unique="true"
-                             primaryKeyName="pk_person"/>
+                             primaryKeyName="pk_user"/>
             </column>
             <column name="first_name" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -23,7 +23,7 @@
             <column name="last_name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="age" type="varchar2(50)">
+            <column name="birth_date" type="date">
                 <constraints nullable="false"/>
             </column>
             <column name="position" type="varchar2(50)">

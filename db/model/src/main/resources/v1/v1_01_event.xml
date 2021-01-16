@@ -32,7 +32,7 @@
   <!--    <createTable  catalogName="lglocal"-->
   <!--                  remarks="A String"-->
   <!--                  schemaName="public"-->
-  <!--                  tableName="person"-->
+  <!--                  tableName="user"-->
   <!--                  tablespace="A String">-->
   <!--      <column  name="address"  type="varchar(255)"/>-->
   <!--    </createTable>-->
