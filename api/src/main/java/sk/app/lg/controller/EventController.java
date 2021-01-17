@@ -12,24 +12,28 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 public class EventController extends BaseController {
 
-    @Autowired
-    EventService eventService;
+    private EventService eventService;
 
     public static final String EVENTS_URI = BASE_URI + "/events";
     public static final String EVENT_URI = EVENTS_URI + "/{eventId}";
 
-    @GetMapping(path = "/test")
-    public ResponseEntity test(){
-        return ResponseEntity.ok("Test is ok");
-    }
-
-    @GetMapping(path = EVENT_URI, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity getEvent(@PathVariable UUID eventId){
-        return ResponseEntity.ok(eventService.find(eventId));
+    @Autowired
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
     }
 
     @PostMapping(path = EVENTS_URI, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity insertEvent(@RequestBody Event event){
+    public ResponseEntity insert(@RequestBody Event event){
         return ResponseEntity.ok(eventService.insert(event));
+    }
+
+    @GetMapping(path = EVENT_URI, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity detail(@PathVariable UUID eventId){
+        return ResponseEntity.ok(eventService.findById(eventId));
+    }
+
+    @GetMapping(path = EVENTS_URI, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity list() {
+        return ResponseEntity.ok(eventService.findAll());
     }
 }

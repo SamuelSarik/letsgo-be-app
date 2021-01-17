@@ -18,6 +18,10 @@ dependencies {
 
 def changeLog = "$projectDir/src/main/resources/changelog.xml"
 
+update {
+    dependsOn = [dropAll]
+}
+
 task('dev') {
     println "executing dev"
 

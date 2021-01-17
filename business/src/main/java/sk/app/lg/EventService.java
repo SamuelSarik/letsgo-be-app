@@ -3,6 +3,7 @@ package sk.app.lg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.app.lg.repository.EventRepository;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,7 +21,11 @@ public class EventService {
         return eventRepository.save(event);
     }
 
-    public Optional<Event> find(UUID id) {
-        return eventRepository.findById(id);
+    public Optional<Event> findById(UUID eventId) {
+        return eventRepository.findById(eventId);
+    }
+
+    public Optional<List<Event>> findAll() {
+        return Optional.of(eventRepository.findAll());
     }
 }
