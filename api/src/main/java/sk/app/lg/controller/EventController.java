@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.app.lg.Event;
 import sk.app.lg.EventService;
+import sk.app.lg.error.CustomException;
+import sk.app.lg.exceptionhandling.ExceptionHandler;
+
 import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -29,7 +32,13 @@ public class EventController extends BaseController {
 
     @GetMapping(path = EVENT_URI, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity detail(@PathVariable UUID eventId){
-        return ResponseEntity.ok(eventService.findById(eventId));
+        try {
+            return ResponseEntity.ok(eventService.find(eventId));
+        } catch (CustomException e) {
+            return ExceptionHandler.createCustomErrorResponse(e);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e);
+        }
     }
 
     @GetMapping(path = EVENTS_URI, produces = APPLICATION_JSON_VALUE)
