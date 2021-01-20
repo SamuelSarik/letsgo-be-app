@@ -1,4 +1,9 @@
 dependencies {
+    compile("org.hibernate.validator:hibernate-validator")
+    compile("com.fasterxml.jackson.module:jackson-module-parameter-names")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+
     compileOnly 'org.projectlombok:lombok:1.18.4'
     annotationProcessor 'org.projectlombok:lombok:1.18.4'
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')

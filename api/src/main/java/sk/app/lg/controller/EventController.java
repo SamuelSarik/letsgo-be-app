@@ -3,11 +3,10 @@ package sk.app.lg.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.app.lg.Event;
 import sk.app.lg.EventService;
+import sk.app.lg.dto.EventRequest;
 import sk.app.lg.error.CustomException;
-import sk.app.lg.exceptionhandling.ExceptionHandler;
-
+import sk.app.lg.handler.ExceptionHandler;
 import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -26,14 +25,14 @@ public class EventController extends BaseController {
     }
 
     @PostMapping(path = EVENTS_URI, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity insert(@RequestBody Event event){
-        return ResponseEntity.ok(eventService.insert(event));
+    public ResponseEntity create(@RequestBody EventRequest request){
+        return ResponseEntity.ok(eventService.register(request));
     }
 
     @GetMapping(path = EVENT_URI, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity detail(@PathVariable UUID eventId){
         try {
-            return ResponseEntity.ok(eventService.find(eventId));
+            return ResponseEntity.ok(eventService.findById(eventId));
         } catch (CustomException e) {
             return ExceptionHandler.createCustomErrorResponse(e);
         } catch (Exception e) {

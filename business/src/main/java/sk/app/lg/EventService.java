@@ -2,7 +2,9 @@ package sk.app.lg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.app.lg.dto.EventRequest;
 import sk.app.lg.error.CustomException;
+import sk.app.lg.factory.EventFactory;
 import sk.app.lg.repository.EventRepository;
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +20,12 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public Event insert(Event event) {
+    public Event register(EventRequest request) {
+        final Event event = EventFactory.createEvent(request);
         return eventRepository.save(event);
     }
 
-    public Optional<Event> find(UUID id) throws CustomException {
+    public Optional<Event> findById(UUID id) throws CustomException {
         Optional<Event> event = eventRepository.findById(id);
         if (event.isEmpty()) {
             throw new CustomException(1, "Event with id " + id + " does not exist");

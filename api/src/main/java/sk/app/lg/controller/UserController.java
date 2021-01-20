@@ -3,8 +3,11 @@ package sk.app.lg.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.app.lg.User;
+import sk.app.lg.dto.UserRequest;
 import sk.app.lg.UserService;
+import sk.app.lg.error.CustomException;
+import sk.app.lg.handler.ExceptionHandler;
+
 import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -23,13 +26,19 @@ public class UserController extends BaseController{
     }
 
     @PostMapping(path = USERS_URI, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity insert(@RequestBody User user) {
-        return ResponseEntity.ok(userService.insert(user));
+    public ResponseEntity create(@RequestBody UserRequest request) {
+        return ResponseEntity.ok(userService.register(request));
     }
 
     @GetMapping(path = USER_URI)
     public ResponseEntity detail(@PathVariable UUID userId) {
-        return ResponseEntity.ok(userService.findById(userId));
+        try {
+            return ResponseEntity.ok(userService.findById(userId));
+        } catch (CustomException e) {
+            return ExceptionHandler.createCustomErrorResponse(e);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e);
+        }
     }
 
     @GetMapping(path = USERS_URI)

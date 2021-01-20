@@ -1,13 +1,17 @@
 package sk.app.lg;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name="User")
 public class User {
 
@@ -18,25 +22,83 @@ public class User {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(name = "id")
-    UUID id;
+    private UUID id;
 
-    @Setter
+    @NotBlank
+    @Size(max = 50)
     @Column(name = "first_name")
-    String firstName;
+    private String firstName;
 
-    @Setter
+    @NotBlank
+    @Size(max = 50)
     @Column(name = "last_name")
-    String lastName;
+    private String lastName;
 
-    @Setter
     @Column(name = "birth_date")
-    String birthDate;
+    private String birthDate;
 
-    @Setter
+    @NotBlank
+    @Size(max = 50)
     @Column(name = "position")
-    String position;
+    @NotBlank
+    private String position;
 
-    @Setter
+    @NotBlank
+    @Email
     @Column(name = "email")
-    String email;
+    private String email;
+
+    private User(UserBuilder builder) {
+        this.id = builder.id;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.birthDate = builder.birthDate;
+        this.position = builder.position;
+        this.email = builder.email;
+    }
+
+    public static class UserBuilder {
+
+        private UUID id;
+        private String firstName;
+        private String lastName;
+        private String birthDate;
+        private String position;
+        private String email;
+
+        public UserBuilder id(UUID id) {
+            this.id = id;
+            return this;
+        }
+
+        public UserBuilder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public UserBuilder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public UserBuilder birthDate(String birthDate) {
+            this.birthDate = birthDate;
+            return this;
+        }
+
+        public UserBuilder position(String position) {
+            this.position = position;
+            return this;
+        }
+
+        public UserBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public User build() {
+            User user = new User(this);
+            return user;
+        }
+    }
 }

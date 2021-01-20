@@ -1,12 +1,9 @@
-package sk.app.lg.exceptionhandling;
+package sk.app.lg.handler;
 
 import org.springframework.http.ResponseEntity;
 import sk.app.lg.error.CustomException;
-
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class ExceptionHandler {
 

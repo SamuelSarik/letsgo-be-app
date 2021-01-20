@@ -1,14 +1,17 @@
 package sk.app.lg;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "Event")
 public class Event {
 
@@ -19,17 +22,58 @@ public class Event {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(name = "id")
-    UUID id;
+    private UUID id;
 
-    @Setter
+    @NotBlank
+    @Size(max = 100)
     @Column(name = "name")
-    String name;
+    private String name;
 
-    @Setter
+    @NotBlank
+    @Size(max = 100)
     @Column(name = "place")
-    String place;
+    private String place;
 
-    @Setter
     @Column(name = "time_of_event")
-    LocalDateTime timeOfEvent;
+    private LocalDateTime timeOfEvent;
+
+    private Event(EventBuilder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.place = builder.place;
+        this.timeOfEvent = builder.timeOfEvent;
+    }
+
+    public static class EventBuilder {
+
+        private UUID id;
+        private String name;
+        private String place;
+        private LocalDateTime timeOfEvent;
+
+        public EventBuilder id(UUID id) {
+            this.id = id;
+            return this;
+        }
+
+        public EventBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public EventBuilder place(String place) {
+            this.place = place;
+            return this;
+        }
+
+        public EventBuilder timeOfEvent(LocalDateTime timeOfEvent) {
+            this.timeOfEvent = timeOfEvent;
+            return this;
+        }
+
+        public Event build() {
+            Event event = new Event(this);
+            return event;
+        }
+    }
 }
