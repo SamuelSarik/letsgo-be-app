@@ -1,4 +1,5 @@
 dependencies {
+    compile project(':domain:shared')
     compile("org.hibernate.validator:hibernate-validator")
     compile("com.fasterxml.jackson.module:jackson-module-parameter-names")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")

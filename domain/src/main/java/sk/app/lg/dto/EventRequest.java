@@ -2,6 +2,7 @@ package sk.app.lg.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NoArgsConstructor;
+import sk.app.lg.EventCategory;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 public final class EventRequest {
 
     private UUID id;
-    private String name;
+    private EventCategory category;
     private String place;
     private LocalDateTime timeOfEvent;
 
@@ -18,9 +19,9 @@ public final class EventRequest {
         return id;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("category")
+    public EventCategory getCategory() {
+        return category;
     }
 
     @JsonProperty("place")

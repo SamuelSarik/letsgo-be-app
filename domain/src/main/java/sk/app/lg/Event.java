@@ -26,8 +26,8 @@ public class Event {
 
     @NotBlank
     @Size(max = 100)
-    @Column(name = "name")
-    private String name;
+    @Column(name = "category")
+    private String category;
 
     @NotBlank
     @Size(max = 100)
@@ -39,7 +39,7 @@ public class Event {
 
     private Event(EventBuilder builder) {
         this.id = builder.id;
-        this.name = builder.name;
+        this.category = builder.category;
         this.place = builder.place;
         this.timeOfEvent = builder.timeOfEvent;
     }
@@ -47,7 +47,7 @@ public class Event {
     public static class EventBuilder {
 
         private UUID id;
-        private String name;
+        private String category;
         private String place;
         private LocalDateTime timeOfEvent;
 
@@ -56,8 +56,8 @@ public class Event {
             return this;
         }
 
-        public EventBuilder name(String name) {
-            this.name = name;
+        public EventBuilder category(String category) {
+            this.category = category;
             return this;
         }
 
