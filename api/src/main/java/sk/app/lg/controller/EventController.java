@@ -34,7 +34,7 @@ public class EventController extends BaseController {
         try {
             return ResponseEntity.ok(eventService.findById(eventId));
         } catch (CustomException e) {
-            return ExceptionHandler.createCustomErrorResponse(e);
+            return ExceptionHandler.createCustomErrorResponse(e, eventId);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e);
         }

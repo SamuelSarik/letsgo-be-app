@@ -35,7 +35,7 @@ public class UserController extends BaseController{
         try {
             return ResponseEntity.ok(userService.findById(userId));
         } catch (CustomException e) {
-            return ExceptionHandler.createCustomErrorResponse(e);
+            return ExceptionHandler.createCustomErrorResponse(e, userId);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e);
         }

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -35,7 +36,7 @@ public class User {
     private String lastName;
 
     @Column(name = "birth_date")
-    private String birthDate;
+    private LocalDate birthDate;
 
     @NotBlank
     @Size(max = 50)
@@ -62,7 +63,7 @@ public class User {
         private UUID id;
         private String firstName;
         private String lastName;
-        private String birthDate;
+        private LocalDate birthDate;
         private String position;
         private String email;
 
@@ -81,7 +82,7 @@ public class User {
             return this;
         }
 
-        public UserBuilder birthDate(String birthDate) {
+        public UserBuilder birthDate(LocalDate birthDate) {
             this.birthDate = birthDate;
             return this;
         }

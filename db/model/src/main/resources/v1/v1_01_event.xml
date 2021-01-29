@@ -28,13 +28,4 @@
       </column>
     </createTable>
   </changeSet>
-  <!--  <changeSet  author="liquibase-docs"  id="createTable-example">-->
-  <!--    <createTable  catalogName="lglocal"-->
-  <!--                  remarks="A String"-->
-  <!--                  schemaName="public"-->
-  <!--                  tableName="user"-->
-  <!--                  tablespace="A String">-->
-  <!--      <column  name="address"  type="varchar(255)"/>-->
-  <!--    </createTable>-->
-  <!--  </changeSet>-->
 </databaseChangeLog>

@@ -2,6 +2,7 @@ package sk.app.lg.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -10,7 +11,7 @@ public final class UserRequest {
     private UUID id;
     private String firstName;
     private String lastName;
-    private String birthDate;
+    private LocalDate birthDate;
     private String position;
     private String email;
 
@@ -30,7 +31,7 @@ public final class UserRequest {
     }
 
     @JsonProperty("birthDate")
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 

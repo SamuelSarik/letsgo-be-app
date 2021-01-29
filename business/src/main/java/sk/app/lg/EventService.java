@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static sk.app.lg.error.ValidatorCode.EVENT_WITH_ID_DOES_NOT_EXIST;
+
 @Service
 public class EventService {
 
@@ -28,7 +30,7 @@ public class EventService {
     public Optional<Event> findById(UUID id) throws CustomException {
         Optional<Event> event = eventRepository.findById(id);
         if (event.isEmpty()) {
-            throw new CustomException(1, "Event with id " + id + " does not exist");
+            throw new CustomException(EVENT_WITH_ID_DOES_NOT_EXIST);
         }
         return event;
     }
