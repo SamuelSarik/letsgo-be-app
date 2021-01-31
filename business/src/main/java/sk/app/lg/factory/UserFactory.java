@@ -6,7 +6,7 @@ import sk.app.lg.dto.UserRequest;
 public final class UserFactory {
 
     public static User createUser(UserRequest request) {
-        return new User.UserBuilder()
+        return User.builder()
                 .id(request.getId())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())

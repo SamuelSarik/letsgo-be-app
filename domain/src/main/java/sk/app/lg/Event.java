@@ -1,5 +1,7 @@
 package sk.app.lg;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,7 +13,9 @@ import java.util.UUID;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "Event")
 public class Event {
 
@@ -36,44 +40,4 @@ public class Event {
 
     @Column(name = "time_of_event")
     private LocalDateTime timeOfEvent;
-
-    private Event(EventBuilder builder) {
-        this.id = builder.id;
-        this.category = builder.category;
-        this.place = builder.place;
-        this.timeOfEvent = builder.timeOfEvent;
-    }
-
-    public static class EventBuilder {
-
-        private UUID id;
-        private String category;
-        private String place;
-        private LocalDateTime timeOfEvent;
-
-        public EventBuilder id(UUID id) {
-            this.id = id;
-            return this;
-        }
-
-        public EventBuilder category(String category) {
-            this.category = category;
-            return this;
-        }
-
-        public EventBuilder place(String place) {
-            this.place = place;
-            return this;
-        }
-
-        public EventBuilder timeOfEvent(LocalDateTime timeOfEvent) {
-            this.timeOfEvent = timeOfEvent;
-            return this;
-        }
-
-        public Event build() {
-            Event event = new Event(this);
-            return event;
-        }
-    }
 }

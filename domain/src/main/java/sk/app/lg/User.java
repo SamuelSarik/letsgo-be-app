@@ -1,5 +1,7 @@
 package sk.app.lg;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,7 +14,9 @@ import java.util.UUID;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name="User")
 public class User {
 
@@ -48,58 +52,4 @@ public class User {
     @Email
     @Column(name = "email")
     private String email;
-
-    private User(UserBuilder builder) {
-        this.id = builder.id;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.birthDate = builder.birthDate;
-        this.position = builder.position;
-        this.email = builder.email;
-    }
-
-    public static class UserBuilder {
-
-        private UUID id;
-        private String firstName;
-        private String lastName;
-        private LocalDate birthDate;
-        private String position;
-        private String email;
-
-        public UserBuilder id(UUID id) {
-            this.id = id;
-            return this;
-        }
-
-        public UserBuilder firstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public UserBuilder lastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public UserBuilder birthDate(LocalDate birthDate) {
-            this.birthDate = birthDate;
-            return this;
-        }
-
-        public UserBuilder position(String position) {
-            this.position = position;
-            return this;
-        }
-
-        public UserBuilder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public User build() {
-            User user = new User(this);
-            return user;
-        }
-    }
 }

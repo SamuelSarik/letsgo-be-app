@@ -6,7 +6,7 @@ import sk.app.lg.dto.EventRequest;
 public final class EventFactory {
 
     public static Event createEvent(EventRequest request) {
-        return new Event.EventBuilder()
+        return Event.builder()
                 .id(request.getId())
                 .category(request.getCategory().toString())
                 .place(request.getPlace())
