@@ -5,5 +5,5 @@
 
   <include file="v1_00_user.xml" relativeToChangelogFile="true"/>
   <include file="v1_01_event.xml" relativeToChangelogFile="true"/>
-
+  <include file="v1_02_realization.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

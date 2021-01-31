@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static sk.app.lg.error.ValidatorCode.EVENT_WITH_ID_DOES_NOT_EXIST;
-import static sk.app.lg.error.ValidatorCode.USER_WITH_ID_DOES_NOT_EXIST;
+import static sk.app.lg.error.ValidatorCode.*;
 
 public class ExceptionHandler {
 
@@ -15,7 +14,9 @@ public class ExceptionHandler {
     public static final String MESSAGE = "message";
 
     public static ResponseEntity createCustomErrorResponse (CustomException e, UUID id) {
-        if (e.getCode() == EVENT_WITH_ID_DOES_NOT_EXIST || e.getCode() == USER_WITH_ID_DOES_NOT_EXIST) {
+        if (e.getCode() == EVENT_WITH_ID_DOES_NOT_EXIST ||
+                e.getCode() == USER_WITH_ID_DOES_NOT_EXIST ||
+                e.getCode() == REALIZATION_WITH_ID_DOES_NOT_EXIST) {
             return ResponseEntity.status(500).body(mapper(e, id));
         } else {
             return ResponseEntity.badRequest().build();

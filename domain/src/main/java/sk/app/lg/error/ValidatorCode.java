@@ -5,7 +5,8 @@ import java.text.MessageFormat;
 public enum ValidatorCode {
 
     EVENT_WITH_ID_DOES_NOT_EXIST("Event with ID ''{0}'' does not exist."),
-    USER_WITH_ID_DOES_NOT_EXIST("User with ID ''{0}'' does not exist.");
+    USER_WITH_ID_DOES_NOT_EXIST("User with ID ''{0}'' does not exist."),
+    REALIZATION_WITH_ID_DOES_NOT_EXIST("Realization with ID ''{0}'' does not exist.");
 
     private final String template;
 

@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+                   logicalFilePath="v1_02_realization.xml">
+
+  <changeSet id="v1_2_tag" author="sarik">
+    <tagDatabase tag="v1.2"/>
+  </changeSet>
+
+  <changeSet id="v1_02_realization" author="sarik">
+
+    <createTable catalogName="lglocal" tableName="realization" schemaName="PUBLIC" tablespace="PUBLIC">
+      <column name="id" type="binary(16)">
+        <constraints primaryKey="true"
+                     nullable="false"
+                     unique="true"
+                     primaryKeyName="pk_realization"/>
+      </column>
+      <column name="user_id" type="binary(16)">
+        <constraints nullable="false"
+                     foreignKeyName="fk_user" referencedTableName="user" referencedColumnNames="id"/>
+      </column>
+      <column name="event_id" type="binary(16)">
+        <constraints nullable="false"
+                     foreignKeyName="fk_event" referencedTableName="event" referencedColumnNames="id"/>
+      </column>
+      <column name="notified_at" type="timestamp">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
